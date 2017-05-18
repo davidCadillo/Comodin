@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
@@ -37,14 +38,16 @@ class UserController extends Controller {
      */
     public function store(UserRequest $request) {
         try {
-            $validator = Validator::make($request->all(), $request->rules());
+            $validator = \Validator::make($request->all(), $request->rules());
             if ($validator->fails()) {
                 return response();
             } else {
                 $paramatros = $request->all();
                 $paramatros['password'] = Hash::make($paramatros['password']);
-                Independiente::create($request->all());
-                return response()->json(['mensaje' => 'usuario creado correctamente.'], 201);
+                User::create($paramatros);
+                return response()->json([
+                    'mensaje' => 'usuario creado correctamente.',
+                ], 201);
             }
         } catch (\Exception $e) {
             return response()->json([

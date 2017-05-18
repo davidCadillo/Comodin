@@ -18,16 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function () {
-	Route::resource('users', 'UserController', [
-		'except' => [
-			'create',
-			'edit',
-		],
-	]);
-	Route::get('agentes', 'UserController@agente');
-	Route::get('users/{id}/ubigeos', 'UserController@ubigeo');
-	Route::resource('ubigeos', 'UbigeoController', ['only' => ['show']]);
-	Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
+    Route::resource('users', 'UserController', [
+        'except' => [
+            'create',
+            'edit',
+        ],
+    ]);
+    Route::get('agentes', 'UserController@agente');
+    Route::get('users/{id}/ubigeos', 'UserController@ubigeo');
+    Route::resource('ubigeos', 'UbigeoController', ['only' => ['show']]);
+    Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
+    Route::resource('coches', 'CocheController');
 
 
 });

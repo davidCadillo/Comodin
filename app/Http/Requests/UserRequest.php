@@ -25,9 +25,9 @@ class UserRequest extends FormRequest {
 			'apellido1' => 'required|alpha|max:25',
 			'apellido2' => 'required|alpha|max:25',
 			'password'  => 'required|between:8,17',
-			'dni'       => 'unique:independientes,dni|digits:8',
-			'celular'   => 'unique:independientes,phone|digits:9',
-			'email'     => 'required|email|unique:independientes,email',
+			'dni'       => 'unique:users,dni|digits:8',
+			'celular'   => 'unique:users,phone|digits:9',
+			'email'     => 'required|email|unique:users,email',
 		];
 	}
 
