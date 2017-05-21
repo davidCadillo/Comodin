@@ -5,41 +5,39 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateTableSituacionUsuarios extends Migration {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up() {
-		Schema::create('situacion_usuarios', function (Blueprint $table) {
-			$table->char('situacion', 11);
-			$table->string('descripcion', 40)->nullable();
-			$table->primary('situacion');
-		});
-		DB::table('situacion_usuarios')->insert([
-			'situacion' => 'habilitado',
-		]);
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up() {
+        Schema::create('situacion_usuarios', function (Blueprint $table) {
+            $table->increments('id', false, true);
+            $table->string('situacion', 15)->unique();
+            $table->string('descripcion', 70)->nullable();
+        });
+        DB::table('situacion_usuarios')->insert([
+            'id'        => 1,
+            'situacion' => 'habilitado',
+        ]);
 
-		DB::table('situacion_usuarios')->insert([
-			'situacion' => 'suspendido',
-		]);
-		DB::table('situacion_usuarios')->insert([
-			'situacion' => 'eliminado',
-		]);
-		DB::table('situacion_usuarios')->insert([
-			'situacion' => 'multado',
-		]);
-		DB::table('situacion_usuarios')->insert([
-			'situacion' => 'estafador',
-		]);
-	}
+        DB::table('situacion_usuarios')->insert([
+            'id'        => 2,
+            'situacion' => 'deshabilitado',
+        ]);
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down() {
-		Schema::dropIfExists('situacion_usuarios');
-	}
+        DB::table('situacion_usuarios')->insert([
+            'id'        => 3,
+            'situacion' => 'suspendido',
+        ]);
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down() {
+        Schema::dropIfExists('situacion_usuarios');
+    }
 }

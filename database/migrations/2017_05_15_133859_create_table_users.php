@@ -28,22 +28,23 @@ class CreateTableUsers extends Migration {
             $table->string('image_url', 100)->nullable()->unique();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
-            $table->enum('tipo_usuario', [
-                'independiente',
-                'empresa',
-            ]);
-            $table->enum('tipo_formalidad', [
-                'informal',
-                'formal',
-                'en proceso',
-            ]);
-            $table->char('situacion_usuario_id', 11);
+
+            /*BEGIN Definiciónn de tipos*/
             $table->char('ubigeo_id', 6);
-            $table->integer('tipo_agente_id')->unsigned();
-            $table->foreign('situacion_usuario_id')->references('situacion')->on('situacion_usuarios');
-            $table->foreign('tipo_agente_id')->references('id')->on('tipos_agentes');
+            $table->integer('situacion_usuario_id')->unsigned();
+            $table->integer('tipo_formalidad_id')->unsigned();
+            $table->integer('tipo_usuario_id')->unsigned();
+            $table->integer('agente_id')->unsigned();
+            /*END Definiciónn de tipos*/
+
+            /*BEGIN Definición de claves foráneas*/
             $table->foreign('ubigeo_id')->references('cod_ubigeo')->on('ubigeos');
+            $table->foreign('situacion_usuario_id')->references('id')->on('situacion_usuarios');
+            $table->foreign('tipo_formalidad_id')->references('id')->on('tipo_formalidads');
+            $table->foreign('tipo_usuario_id')->references('id')->on('tipo_usuarios');
+            $table->foreign('agente_id')->references('id')->on('agentes');
             $table->timestamps();
+            /*END Definición de claves foráneas*/
         });
     }
 

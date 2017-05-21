@@ -28,7 +28,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('users/{id}/ubigeos', 'UserController@ubigeo');
     Route::resource('ubigeos', 'UbigeoController', ['only' => ['show']]);
     Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
-    Route::resource('coches', 'CocheController');
 
 
 });

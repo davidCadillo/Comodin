@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\User;
 
 class UserController extends Controller {
-
     /**
      * Display a listing of the resource.
      *
@@ -64,23 +63,8 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        try {
-            $user = User::find($id);
-            if (!$user) {
-                return response()->json([
-                    'codigo'  => 404,
-                    'mensaje' => 'No se encuentra un usuario con ese código.',
-                ], 404);
-            } else {
-                return response()->json($user, 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'codigo'  => 500,
-                'mensaje' => 'Algo malo pasó.',
-            ], 500);
-        }
+    public function show(User $user) {
+
     }
 
     /**
@@ -103,28 +87,8 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        try {
-
-            $user = User::find($id);
-            if (!$user) {
-                return response()->json([
-                    'codigo'  => 404,
-                    'mensaje' => 'No se encuentra un usuario con ese código.',
-                ], 404);
-            } else {
-                $user->delete();
-                return response()->json([
-                    'codigo'  => 200,
-                    'mensaje' => 'Usuario elimnado correctamente',
-                ], 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'codigo'  => 500,
-                'mensaje' => 'Algo malo pasó.',
-            ], 500);
-        }
+    public function destroy(User $user) {
+        $user->delete();
     }
 
 
