@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 
 class UserRequest extends FormRequest {
 	/**
@@ -28,6 +29,7 @@ class UserRequest extends FormRequest {
 			'dni'       => 'unique:users,dni|digits:8',
 			'celular'   => 'unique:users,phone|digits:9',
 			'email'     => 'required|email|unique:users,email',
+			'fecha_nac' => 'required',
 		];
 	}
 

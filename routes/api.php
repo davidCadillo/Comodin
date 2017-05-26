@@ -14,20 +14,27 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
 });
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::resource('users', 'UserController', [
-        'except' => [
-            'create',
-            'edit',
-        ],
-    ]);
-    Route::get('agentes', 'UserController@agente');
-    Route::get('users/{id}/ubigeos', 'UserController@ubigeo');
-    Route::resource('ubigeos', 'UbigeoController', ['only' => ['show']]);
-    Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
+	Route::resource('users', 'UserController', [
+		'except' => [
+			'index',
+			'create',
+			'edit',
+		],
+	]);
+	Route::get('agentes', 'UserController@agente');
+	Route::get('users/{user}/ubigeos', 'UserController@ubigeo');
+	Route::resource('ubigeos', 'UbigeoController', ['only' => ['show']]);
+	Route::resource('situacionesusuarios', 'SituacionUsuarioController', [
+		'only' => [
+			'index',
+			'show',
+		],
+	]);
+	Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
 
 
 });
