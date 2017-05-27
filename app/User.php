@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -15,49 +16,53 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Model {
 
-	/*
-	 * implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
-	use Notifiable, Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait;
-	 *
-	 * */
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $guarded
-		= [
-			'created_at',
-			'updated_at',
-		];
-
-	public function ubigeo() {
-		return $this->belongsTo('App\Ubigeo', 'ubigeo_id');
-	}
-
-	/**
-	 * The attributes that should be hidden for arrays.
-	 *
-	 * @var array
-	 */
-	protected $hidden
-		= [
-			'password',
-			'remember_token',
-			'longitude',
-			'latitude',
-			'ubigeo_id',
-			'situacion_usuario_id',
-			'tipo_formalidad_id',
-			'tipo_usuario_id',
-			'agente_id',
-			'created_at',
-			'updated_at',
-		];
-
-	public function setPasswordAttribute(){
-		$this->attributes['password'] = Hash::make(['password']);
-	}
+    /*
+     * implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
+    use Notifiable, Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait;
+     *
+     * */
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded
+        = [
+            'created_at',
+            'updated_at',
+        ];
+    protected $dates = ['fecha_nac'];
 
 
+    public function ubigeo() {
+        return $this->belongsTo('App\Ubigeo', 'ubigeo_id');
+    }
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden
+        = [
+            'password',
+            'remember_token',
+            'longitude',
+            'latitude',
+            'ubigeo_id',
+            'situacion_usuario_id',
+            'tipo_formalidad_id',
+            'tipo_usuario_id',
+            'agente_id',
+            'created_at',
+            'updated_at',
+        ];
+
+    public function setPasswordAttribute($password) {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function setFechaNacAttribute($fecha_nac) {
+        $this->attributes['fecha_nac'] = Carbon::createFromFormat('d/m/Y', $fecha_nac);
+    }
 }
