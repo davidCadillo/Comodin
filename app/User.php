@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Model {
+    use SoftDeletes;
 
     /*
      * implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
@@ -30,9 +32,15 @@ class User extends Model {
         = [
             'created_at',
             'updated_at',
+            'deleted_at',
         ];
-    protected $dates = ['fecha_nac'];
-
+    protected $dates
+        = [
+            'fecha_nac',
+            'deleted_at',
+            'created_at',
+            'updated_at',
+        ];
 
     public function ubigeo() {
         return $this->belongsTo('App\Ubigeo', 'ubigeo_id');

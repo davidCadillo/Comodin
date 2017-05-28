@@ -18,7 +18,7 @@ class CreateTableUsers extends Migration {
 			$table->string('apellido2', 25);
 			$table->string('email', 30)->unique();
 			$table->string('password', 60);
-			$table->string('api_token')->unique();
+			$table->string('api_token')->unique()->nullable();
 			$table->rememberToken();
 			$table->date('fecha_nac');
 			$table->string('dni', 10)->nullable()->unique();
@@ -30,11 +30,11 @@ class CreateTableUsers extends Migration {
 			$table->decimal('latitude', 10, 8)->nullable();
 
 			/*BEGIN Definiciónn de tipos*/
-			$table->char('ubigeo_id', 6);
-			$table->integer('situacion_usuario_id')->unsigned()->default(1);
-			$table->integer('tipo_formalidad_id')->unsigned();
-			$table->integer('tipo_usuario_id')->unsigned();
-			$table->integer('agente_id')->unsigned();
+			$table->char('ubigeo_id', 6)->nullable();
+			$table->integer('situacion_usuario_id')->unsigned()->default(1)->nullable();
+			$table->integer('tipo_formalidad_id')->unsigned()->nullable();
+			$table->integer('tipo_usuario_id')->unsigned()->nullable();
+			$table->integer('agente_id')->unsigned()->nullable();
 			/*END Definiciónn de tipos*/
 
 			/*BEGIN Definición de claves foráneas*/
@@ -44,6 +44,7 @@ class CreateTableUsers extends Migration {
 			$table->foreign('tipo_usuario_id')->references('id')->on('tipo_usuarios');
 			$table->foreign('agente_id')->references('id')->on('agentes');
 			$table->timestamps();
+            $table->softDeletes();
 			/*END Definición de claves foráneas*/
 		});
 	}

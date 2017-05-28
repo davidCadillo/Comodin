@@ -22,16 +22,27 @@ class UserRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'nombres'   => 'required|alpha|max:20',
+			'nombres'   => 'required|max:20',
 			'apellido1' => 'required|alpha|max:25',
 			'apellido2' => 'required|alpha|max:25',
 			'password'  => 'required|between:8,17',
 			'dni'       => 'unique:users,dni|digits:8',
 			'celular'   => 'unique:users,phone|digits:9',
 			'email'     => 'required|email|unique:users,email',
-			'fecha_nac' => 'required',
+			'fecha_nac' => 'required|date_format:d/m/Y',
 		];
 	}
+
+    public function rulesUpdate() {
+        return [
+            'nombres'   => 'alpha|max:20',
+            'apellido1' => 'alpha|max:25',
+            'apellido2' => 'alpha|max:25',
+            'dni'       => 'unique:users,dni|digits:8',
+            'celular'   => 'unique:users,phone|digits:9',
+            'email'     => 'email|unique:users,email',
+        ];
+    }
 
 	public function response(array $errors) {
 		// Put whatever response you want here.

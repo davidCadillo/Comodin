@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\HttpResponseCode;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\UserRequest;
@@ -30,7 +31,6 @@ class UserController extends Controller {
             }
         } catch (\Exception $e) {
             return $e->getMessage();
-
         }
     }
 
@@ -53,8 +53,17 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-
+    public function update(UserRequest $request, User $user) {
+        try {
+            $validator = \Validator::make($request->all(), $request->rulesUpdate());
+            if ($validator->fails()) {
+                return $validator->errors();
+            } else {
+                return $user->update($request->all());
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
 
     }
 
@@ -68,7 +77,6 @@ class UserController extends Controller {
     public function destroy(User $user) {
         $user->delete();
         return HttpResponseCode::response(200, 'Usuario eliminado correctamente');
-
     }
 
     public function ubigeo(User $user) {
