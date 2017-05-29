@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
+Route::get('signup', [
+    'as'   => 'users.create',
+    'uses' => 'UserController@create',
+]);

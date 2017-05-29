@@ -22,17 +22,14 @@ class UserController extends Controller {
      */
     public function store(UserRequest $request) {
         try {
-            $validator = \Validator::make($request->all(), $request->rules());
-            if ($validator->fails()) {
-                return $validator->errors();
-            } else {
-                User::create($request->all());
-                return HttpResponseCode::response(201, 'Usuario creado correctamente.');
-            }
+            User::create($request->all());
+            return HttpResponseCode::response(201, 'Usuario creado correctamente.');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
+
+
 
     /**
      * Display the specified resource.
@@ -55,14 +52,10 @@ class UserController extends Controller {
      */
     public function update(UserRequest $request, User $user) {
         try {
-            $validator = \Validator::make($request->all(), $request->rulesUpdate());
-            if ($validator->fails()) {
-                return $validator->errors();
-            } else {
-                return $user->update($request->all());
-            }
+            $user->update($request->all());
+            return HttpResponseCode::response(200, 'Usuario actualizado correctamente.');
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return $e->getTrace();
         }
 
     }
