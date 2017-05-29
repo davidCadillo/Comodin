@@ -19,3 +19,8 @@ Route::get('signup', [
     'as'   => 'users.create',
     'uses' => 'UserController@create',
 ]);
+
+Route::get('join', [
+    'as'   => 'users.create',
+    'uses' => 'UserController@create',
+]);
