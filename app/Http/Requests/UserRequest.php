@@ -33,16 +33,6 @@ class UserRequest extends FormRequest {
 		];
 	}
 
-    public function rulesUpdate() {
-        return [
-            'nombres'   => 'alpha|max:20',
-            'apellido1' => 'alpha|max:25',
-            'apellido2' => 'alpha|max:25',
-            'dni'       => 'unique:users,dni|digits:8',
-            'celular'   => 'unique:users,phone|digits:9',
-            'email'     => 'email|unique:users,email',
-        ];
-    }
 
 	public function response(array $errors) {
 		// Put whatever response you want here.
