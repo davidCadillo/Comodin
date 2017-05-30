@@ -76,8 +76,9 @@ class UserController extends Controller {
         return $user->ubigeo()->get();
     }
 
-    /*public function agente() {
-        $agent = new Agent();
-        return response()->json($agent->isMobile());
-    }*/
+    public function asignarAgente(){
+
+    }
+
+
 }

@@ -18,19 +18,19 @@ class CreateTableAgentes extends Migration {
         });
         DB::table('agentes')->insert([
             'id'     => 1,
-            'nombre' => 'web',
+            'nombre' => 'WEB',
         ]);
         DB::table('agentes')->insert([
             'id'     => 2,
-            'nombre' => 'smartphone',
+            'nombre' => 'SMARTPHONE',
         ]);
         DB::table('agentes')->insert([
             'id'     => 3,
-            'nombre' => 'tablet',
+            'nombre' => 'TABLET',
         ]);
         DB::table('agentes')->insert([
             'id'     => 4,
-            'nombre' => 'robot',
+            'nombre' => 'ROBOT',
         ]);
     }
 

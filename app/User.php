@@ -77,4 +77,8 @@ class User extends Model {
     public function setFechaNacAttribute($fecha_nac) {
         $this->attributes['fecha_nac'] = Carbon::createFromFormat('d/m/Y', $fecha_nac);
     }
+
+    /*public function setAgenteIdAttribute($agente_id){
+
+    }*/
 }

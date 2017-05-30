@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fee7def1ba5d48b95b356e8f26e1a03a",
+    "content-hash": "e2a471c53ac3d33933d8f0bd7e59efbb",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -939,6 +939,77 @@
                 "php"
             ],
             "time": "2017-03-05T18:23:57+00:00"
+        },
+        {
+            "name": "optimus/architect",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/esbenp/architect.git",
+                "reference": "93b1faaeed4b41d9a5c5118925ffdd3933975b27"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/esbenp/architect/zipball/93b1faaeed4b41d9a5c5118925ffdd3933975b27",
+                "reference": "93b1faaeed4b41d9a5c5118925ffdd3933975b27",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "orchestra/testbench": "~3.1",
+                "phpunit/phpunit": "~4.7",
+                "satooshi/php-coveralls": "dev-master@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Optimus\\Architect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2015-10-29T19:40:54+00:00"
+        },
+        {
+            "name": "optimus/bruno",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/esbenp/bruno.git",
+                "reference": "0215a898b2b70710a664c6a4dc33d8c9da9eb1df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/esbenp/bruno/zipball/0215a898b2b70710a664c6a4dc33d8c9da9eb1df",
+                "reference": "0215a898b2b70710a664c6a4dc33d8c9da9eb1df",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.1",
+                "optimus/architect": "~1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "orchestra/testbench": "~3.1",
+                "phpunit/phpunit": "~4.7",
+                "satooshi/php-coveralls": "dev-master@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Optimus\\Api\\Controller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2016-02-23T13:34:10+00:00"
         },
         {
             "name": "paragonie/random_compat",

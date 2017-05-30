@@ -34,6 +34,7 @@ Route::group(['prefix' => 'v1'], function () {
 			'show',
 		],
 	]);
+	Route::resource('agentes','AgenteController', ['only' => ['index','show','post','update','destroy']]);
 	Route::get('ubigeos/{departamento}/{provincia}/{distrito}', 'UbigeoController@ubigeoByLugar');
 
 
